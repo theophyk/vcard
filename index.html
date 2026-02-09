@@ -129,12 +129,18 @@
                 border-top-color: #fff;
                 animation: spin 1s ease-in-out infinite;
             }
+
+            .hint {
+                font-size: 0.75rem;
+                color: #888;
+                margin-top: 10px;
+                display: none;
+            }
     
             @keyframes spin { to { transform: rotate(360deg); } }
         </style>
     </head>
     <body>
-    
         <div class="card">
             <div class="avatar-placeholder">
                 <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
@@ -163,6 +169,7 @@
                 <div class="spinner" id="spinner"></div>
                 <span id="btn-text">Save to Contacts</span>
             </button>
+            <div id="android-hint" class="hint">If downloaded, tap "Open" in notification to save.</div>
         </div>
 
         <script>
