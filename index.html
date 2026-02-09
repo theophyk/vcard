@@ -183,6 +183,9 @@
             email: "alireza.inanlou@samafinancials.com",
             url: "https://www.samafinancials.com/"
         };
+
+        const fileName = `${contactData.firstName}_${contactData.lastName}.vcf`;
+
         function saveContact() {
             // 1. Create the VCF content
             const vcard = `BEGIN:VCARD
@@ -197,7 +200,7 @@ URL:${contactData.url}
 END:VCARD`;
 
             // 2. Create the Blob
-            const blob = new Blob([vcard], { type: 'text/vcard;name=contact.vcf' });
+            const blob = new Blob([vcard], { type: `text/vcard;name=${fileName}` });
 
             // 3. Detect Environment
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -216,11 +219,11 @@ END:VCARD`;
             else if (isAndroid && navigator.share && navigator.canShare) {
                 // --- ANDROID STRATEGY: Web Share API ---
                 // Must be HTTPS! Tries to open the system share sheet.
-                const file = new File([vcard], 'contact.vcf', { type: 'text/vcard' });
+                const file = new File([vcard], fileName, { type: 'text/vcard' });
                 if (navigator.canShare({ files: [file] })) {
                     navigator.share({
                         files: [file],
-                        title: 'John Doe',
+                        title: `${contactData.firstName} ${contactData.lastName}`,
                         text: 'Save to contacts'
                     }).catch((err) => {
                         // If share fails (user cancelled or not supported), fallback
@@ -242,7 +245,7 @@ END:VCARD`;
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
-            a.download = 'contact.vcf';
+            a.download = fileName;
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
