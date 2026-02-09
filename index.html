@@ -147,8 +147,8 @@
         </div>
 
         <h1 id="name"></h1>
-        <div class="title" id="title"></div>
-        <div class="org" id="org"></div>
+        <div id="title" class="title"></div>
+        <div id="org" class="org"></div>
 
         <ul class="info-list">
             <li>
@@ -157,11 +157,11 @@
             </li>
             <li>
                 <span class="label">Email</span>
-                <span id="email"></span>
+                <a id="email" href="#"></a>
             </li>
             <li>
                 <span class="label">Website</span>
-                <span id="website"></span>
+                <a id="website" href="#"></a>
             </li>
         </ul>
 
@@ -194,9 +194,9 @@
                 emailLink.href = `mailto:${contactData.email}`;
             }
             const websiteLink = document.getElementById('website');
-            if (emailLink) {
-                emailLink.textContent = contactData.url;
-                emailLink.href = contactData.url;
+            if (websiteLink) {
+                websiteLink.textContent = contactData.url;
+                websiteLink.href = contactData.url;
             }
         }
 
