@@ -1,244 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact Card</title>
-        <style>
-            :root {
-                --primary-color: #007AFF;
-                --bg-color: #f4f4f4;
-                --card-bg: #ffffff;
-                --text-main: #333;
-                --text-secondary: #666;
-            }
-    
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                background-color: var(--bg-color);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                margin: 0;
-            }
-    
-            .card {
-                background: var(--card-bg);
-                width: 100%;
-                max-width: 360px;
-                border-radius: 20px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                overflow: hidden;
-                text-align: center;
-                padding: 30px 20px;
-                margin: 20px;
-            }
-    
-            /* Profile Image Area */
-            .avatar-placeholder {
-                width: 100px;
-                height: 100px;
-                background-color: #e0e0e0;
-                border-radius: 50%;
-                margin: 0 auto 15px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .avatar-placeholder svg {
-                width: 50px;
-                height: 50px;
-                fill: #999;
-            }
-    
-            h1 {
-                font-size: 24px;
-                margin: 10px 0 5px;
-                color: var(--text-main);
-            }
-    
-            .title {
-                color: var(--primary-color);
-                font-weight: 600;
-                margin-bottom: 5px;
-            }
-    
-            .org {
-                color: var(--text-secondary);
-                font-size: 14px;
-                margin-bottom: 25px;
-            }
-    
-            .info-list {
-                list-style: none;
-                padding: 0;
-                margin-bottom: 30px;
-                text-align: left;
-            }
-    
-            .info-list li {
-                padding: 12px 0;
-                border-bottom: 1px solid #eee;
-                display: flex;
-                align-items: center;
-                color: var(--text-main);
-                font-size: 15px;
-            }
-    
-            .info-list li:last-child {
-                border-bottom: none;
-            }
-    
-            .info-list span.label {
-                width: 80px;
-                color: var(--text-secondary);
-                font-size: 13px;
-            }
-    
-            .btn-save {
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                padding: 15px 30px;
-                border-radius: 50px;
-                font-size: 16px;
-                font-weight: 600;
-                cursor: pointer;
-                width: 100%;
-                transition: background-color 0.2s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-            }
-    
-            .btn-save:active {
-                background-color: #0056b3;
-                transform: scale(0.98);
-            }
-    
-            /* Loading spinner for button */
-            .spinner {
-                display: none;
-                width: 16px;
-                height: 16px;
-                border: 2px solid rgba(255,255,255,0.3);
-                border-radius: 50%;
-                border-top-color: #fff;
-                animation: spin 1s ease-in-out infinite;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Card</title>
+    <style>
+        :root {
+            --primary-color: #007AFF;
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-secondary: #666;
+        }
 
-            .hint {
-                font-size: 0.75rem;
-                color: #888;
-                margin-top: 10px;
-                display: none;
-            }
-    
-            @keyframes spin { to { transform: rotate(360deg); } }
-        </style>
-    </head>
-    <body>
-        <div class="card">
-            <div class="avatar-placeholder">
-                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            </div>
-    
-            <h1 id="name">Sarah Connor</h1>
-            <div class="title" id="job">Software Engineer</div>
-            <div class="org" id="org">Tech Systems Inc.</div>
-    
-            <ul class="info-list">
-                <li>
-                    <span class="label">Mobile</span>
-                    <span id="phone">+1 (555) 019-2834</span>
-                </li>
-                <li>
-                    <span class="label">Email</span>
-                    <span id="email">sarah@example.com</span>
-                </li>
-                <li>
-                    <span class="label">Website</span>
-                    <span id="website">www.example.com</span>
-                </li>
-            </ul>
-    
-            <button class="btn-save" onclick="saveContact()">
-                <div class="spinner" id="spinner"></div>
-                <span id="btn-text">Save to Contacts</span>
-            </button>
-            <div id="android-hint" class="hint">If downloaded, tap "Open" in notification to save.</div>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 360px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 30px 20px;
+            margin: 20px;
+        }
+
+        /* Profile Image Area */
+        .avatar-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-placeholder svg {
+            width: 50px;
+            height: 50px;
+            fill: #999;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 10px 0 5px;
+            color: var(--text-main);
+        }
+
+        .title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .org {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            color: var(--text-main);
+            font-size: 15px;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list span.label {
+            width: 80px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .btn-save {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-save:active {
+            background-color: #0056b3;
+            transform: scale(0.98);
+        }
+
+        /* Loading spinner for button */
+        /* .spinner {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        } */
+
+        .hint {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="avatar-placeholder">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
         </div>
 
-        <script>
-            function saveContact() {
-                // 1. Create the VCF content
-                const vcard = `BEGIN:VCARD
-                    VERSION:3.0
-                    FN:John Doe
-                    N:Doe;John;;;
-                    TEL;TYPE=CELL:+15551234567
-                    EMAIL;TYPE=HOME:john@example.com
-                    END:VCARD`;
+        <h1 id="name">Alireza Inanlou</h1>
+        <div class="title" id="job">AI / ML Engineer</div>
+        <div class="org" id="org">SAMA Financials</div>
 
-                // 2. Create the Blob
-                const blob = new Blob([vcard], { type: 'text/vcard;name=contact.vcf' });
-                
-                // 3. Detect Environment
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                const isAndroid = /Android/.test(navigator.userAgent);
+        <ul class="info-list">
+            <li>
+                <span class="label">Mobile</span>
+                <span id="phone">+98-912-335-9197</span>
+            </li>
+            <li>
+                <span class="label">Email</span>
+                <a href="mailto:alireza.inanlou@samafinancials.com">
+                    <span id="email">alireza.inanlou@samafinancials.com</span>
+                </a>
+            </li>
+            <li>
+                <span class="label">Website</span>
+                <a href="https://www.samafinancials.com/">
+                    <span id="website">samafinancials.com</span>
+                </a>
+            </li>
+        </ul>
 
-                if (isIOS) {
-                    // --- iOS STRATEGY: Direct Navigation ---
-                    // On iOS, navigating to the blob URL forces the native "Contacts Preview"
-                    // where the user can tap "Save" immediately.
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        window.location.href = e.target.result; 
-                    };
-                    reader.readAsDataURL(blob);
-                } 
-                else if (isAndroid && navigator.share && navigator.canShare) {
-                    // --- ANDROID STRATEGY: Web Share API ---
-                    // Must be HTTPS! Tries to open the system share sheet.
-                    const file = new File([vcard], 'contact.vcf', { type: 'text/vcard' });
-                    if (navigator.canShare({ files: [file] })) {
-                        navigator.share({
-                            files: [file],
-                            title: 'John Doe',
-                            text: 'Save to contacts'
-                        }).catch((err) => {
-                            // If share fails (user cancelled or not supported), fallback
-                            console.error("Share failed", err);
-                            downloadFallback(blob);
-                        });
-                    } else {
+        <button class="btn-save" onclick="saveContact()">Save to Contacts</button>
+        <div id="android-hint" class="hint">If downloaded, tap "Open" in notification to save to contacts.</div>
+    </div>
+
+    <script>
+        const contactData = {
+            firstName: "Alireza",
+            lastName: "Inanlou",
+            org: "SAMA Financials",
+            title: "AI / ML Engineer",
+            phone: "+989123359197",
+            email: "alireza.inanlou@samafinancials.com",
+            url: "https://www.samafinancials.com/"
+        };
+        function saveContact() {
+            // 1. Create the VCF content
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:${contactData.firstName} ${contactData.lastName}
+N:${contactData.lastName};${contactData.firstName};;;
+ORG:${contactData.org}
+TITLE:${contactData.title}
+TEL;TYPE=CELL:${contactData.phone}
+EMAIL;TYPE=WORK,INTERNET:${contactData.email}
+URL:${contactData.url}
+END:VCARD`;
+
+            // 2. Create the Blob
+            const blob = new Blob([vcard], { type: 'text/vcard;name=contact.vcf' });
+
+            // 3. Detect Environment
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isAndroid = /Android/.test(navigator.userAgent);
+
+            if (isIOS) {
+                // --- iOS STRATEGY: Direct Navigation ---
+                // On iOS, navigating to the blob URL forces the native "Contacts Preview"
+                // where the user can tap "Save" immediately.
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    window.location.href = e.target.result;
+                };
+                reader.readAsDataURL(blob);
+            }
+            else if (isAndroid && navigator.share && navigator.canShare) {
+                // --- ANDROID STRATEGY: Web Share API ---
+                // Must be HTTPS! Tries to open the system share sheet.
+                const file = new File([vcard], 'contact.vcf', { type: 'text/vcard' });
+                if (navigator.canShare({ files: [file] })) {
+                    navigator.share({
+                        files: [file],
+                        title: 'John Doe',
+                        text: 'Save to contacts'
+                    }).catch((err) => {
+                        // If share fails (user cancelled or not supported), fallback
+                        console.error("Share failed", err);
                         downloadFallback(blob);
-                    }
-                } 
-                else {
-                    // --- DESKTOP / FALLBACK STRATEGY ---
+                    });
+                } else {
                     downloadFallback(blob);
                 }
             }
-
-            function downloadFallback(blob) {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'contact.vcf';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                
-                // Show hint for Android users if it just downloaded silently
-                if (/Android/.test(navigator.userAgent)) {
-                    document.getElementById('android-hint').style.display = 'block';
-                }
+            else {
+                // --- DESKTOP / FALLBACK STRATEGY ---
+                downloadFallback(blob);
             }
-        </script>
-    </body>
+        }
+
+        function downloadFallback(blob) {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'contact.vcf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+            // Show hint for Android users if it just downloaded silently
+            if (/Android/.test(navigator.userAgent)) {
+                document.getElementById('android-hint').style.display = 'block';
+            }
+        }
+    </script>
+</body>
 </html>
